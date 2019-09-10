@@ -8,21 +8,17 @@ import (
 	"strings"
 	"time"
 
-	// "github.com/tokopedia/grace"
 	gcfg "gopkg.in/gcfg.v1"
-	// "github.com/Somesh/pin-config/common/constant"
 )
 
 func init() {
 	CF = &Config{}
-	// GOPATH := os.Getenv("GOPATH")
-	ok := ReadConfig(CF, "", "timeConfig")
-	// ok := ReadConfig(CF, "/etc", "pin-config") || ReadConfig(CF, GOPATH+"/src/github.com/Somesh/pin-config/files/etc", "pin-config") || ReadConfig(CF, "files/etc", "pin-config")
+	ok := ReadConfig(CF, "", "timeConfigs")
 	if !ok {
 		log.Fatal("Failed to read config file")
 	}
 	makeCountryMap(CF)
-	fmt.Printf("Mayank final config>>>%+v\n", CF)
+	// fmt.Printf("Mayank final config>>>%+v\n", CF)
 }
 
 func makeCountryMap(cfg *Config) {
@@ -79,29 +75,6 @@ func ReadConfig(cfg *Config, path string, module string) bool {
 func GetConfig() *Config {
 	return CF
 }
-
-// func (g GraceCfg) ToGraceConfig() grace.Config {
-// 	timeout, err := time.ParseDuration(g.Timeout)
-// 	if err != nil {
-// 		timeout = time.Second * 5
-// 	}
-
-// 	readTimeout, err := time.ParseDuration(g.HTTPReadTimeout)
-// 	if err != nil {
-// 		timeout = time.Second * 10
-// 	}
-
-// 	writeTimeout, err := time.ParseDuration(g.HTTPWriteTimeout)
-// 	if err != nil {
-// 		timeout = time.Second * 10
-// 	}
-
-// 	return grace.Config{
-// 		Timeout:          timeout,
-// 		HTTPReadTimeout:  readTimeout,
-// 		HTTPWriteTimeout: writeTimeout,
-// 	}
-// }
 
 func GetLogger() *log.Logger {
 	var slog *log.Logger

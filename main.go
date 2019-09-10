@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	_ "golang/config"
+	config "go-config-read/config"
 )
 
 type Configuration struct {
@@ -31,5 +31,9 @@ type StatePincode struct {
 
 func main() {
 
-	fmt.Println("in main")
+	fmt.Println("in main first")
+	x := *config.CF
+	fmt.Printf("in main %+v \n", x)
+	fmt.Println("in main", x.Countries["au"]["sydney_1234"].DST)
+	fmt.Println("in main last")
 }
